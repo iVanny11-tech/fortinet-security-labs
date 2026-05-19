@@ -1,3 +1,4 @@
+![Project Banner](banner.png)
 # FortiGate IPS – Blocking Known Exploits on a Web Server
 
 > **Platform:** FortiGate Next-Generation Firewall (FortiOS)  
