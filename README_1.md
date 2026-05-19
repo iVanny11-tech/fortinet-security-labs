@@ -170,4 +170,5 @@ This restarts all IPS-related processes. After restart, the process ID changes a
 
 ---
 
-*Part of my Fortinet security portfolio — [github.com/your-username](https://github.com/your-username)*
+*Part of my Fortinet security portfolio — https://github.com/iVanny11-tech/fortinet-security-labs/edit/main/README_1.md*
+
