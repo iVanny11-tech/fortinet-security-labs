@@ -52,11 +52,11 @@ I created a custom IPS sensor called **WEBSERVER** under Security Profiles → I
 | Target      | Server   |
 | Application | Apache   |
 
-![IPS Sensor Filter Configuration](screenshot-01-ips-sensor-filters.png)
+![IPS Sensor Filter Configuration](01-ips-sensor-filters.png)
 
 Once all filters were added, the completed WEBSERVER sensor looked like this:
 
-![Completed WEBSERVER IPS Sensor](screenshot-02-ips-sensor-complete.png)
+![Completed WEBSERVER IPS Sensor](02-ips-sensor-complete.png)
 
 ---
 
@@ -71,7 +71,7 @@ To allow external traffic to reach the internal web server, I configured a Virtu
 | External IP          | 100.65.0.200   |
 | Internal (Mapped) IP | 10.0.11.50     |
 
-![VIP-WEB-SERVER Configuration](screenshot-03-vip-configuration.png)
+![VIP-WEB-SERVER Configuration](03-vip-configuration.png)
 
 ---
 
@@ -93,7 +93,7 @@ I created an inbound firewall policy that applies the WEBSERVER IPS sensor to al
 | IPS Sensor         | WEBSERVER              |
 | SSL Inspection     | Certificate Inspection |
 
-![Firewall Policy – Web_Server_Access_IPS](screenshot-04-firewall-policy.png)
+![Firewall Policy – Web_Server_Access_IPS](04-firewall-policy.png)
 
 ---
 
@@ -105,7 +105,7 @@ From the external Linux server, I ran the Nikto web vulnerability scanner agains
 nikto.pl -host 100.65.0.200
 ```
 
-![Nikto Attack Output](screenshot-05-nikto-attack.png)
+![Nikto Attack Output](05-nikto-attack.png)
 
 ---
 
@@ -113,11 +113,11 @@ nikto.pl -host 100.65.0.200
 
 After the attack simulation, I reviewed the IPS logs in FortiAnalyzer under Log View → Security → Intrusion Prevention. FortiGate had detected and dropped multiple packets matching known Apache vulnerability signatures.
 
-![FortiAnalyzer – IPS Log Entries](screenshot-06-fortianalyzer-logs.png)
+![FortiAnalyzer – IPS Log Entries](06-fortianalyzer-logs.png)
 
-I cross-referenced each log entry against the FortiGuard Labs Threat Encyclopedia, which provided CVE references, affected software versions, severity ratings, and recommended remediation steps. This step also revealed that some triggered signatures targeted software not present on the server — in a production environment those would be removed from the sensor to reduce noise and improve throughput.
+I cross-referenced each log entry against the FortiGuard Labs Threat Encyclopedia, which provided CVE references, affected software versions, severity ratings, and recommended remediation steps. This also revealed that some triggered signatures targeted software not present on the server — in a production environment those would be removed from the sensor to reduce noise and improve throughput.
 
-![FortiGuard Threat Encyclopedia Entry](screenshot-07-fortiGuard-encyclopedia.png)
+![FortiGuard Threat Encyclopedia Entry](07-fortiGuard-encyclopedia.png)
 
 ---
 
@@ -131,15 +131,15 @@ diagnose test application ipsmonitor 1
 ```
 This returns the engine health, process ID, and current bypass mode status.
 
-![CLI – IPS Monitor Status](screenshot-08-cli-ipsmonitor.png)
+![CLI – IPS Monitor Status](08-cli-ipsmonitor.png)
 
 **Enabling bypass mode to temporarily disable IPS inspection:**
 ```bash
 diagnose test application ipsmonitor 5
 ```
-While bypass is active, traffic passes through without IPS inspection and no log entries are generated. This is useful as a break-glass option during troubleshooting but should never be left on in production.
+While bypass is active, traffic passes through without IPS inspection and no log entries are generated. This is a break-glass option for troubleshooting but should never be left on in production.
 
-![CLI – Bypass Mode Enabled](screenshot-09-cli-bypass.png)
+![CLI – Bypass Mode Enabled](09-cli-bypass.png)
 
 **Restarting the IPS engine:**
 ```bash
@@ -147,7 +147,7 @@ diagnose test application ipsmonitor 99
 ```
 This restarts all IPS-related processes. After restart, the process ID changes and bypass mode automatically resets to disabled — a built-in safety mechanism to prevent accidental exposure.
 
-![CLI – Status After Engine Restart](screenshot-10-cli-restart.png)
+![CLI – Status After Engine Restart](10-cli-restart.png)
 
 ---
 
@@ -170,5 +170,4 @@ This restarts all IPS-related processes. After restart, the process ID changes a
 
 ---
 
-*Part of my Fortinet security portfolio — https://github.com/iVanny11-tech/fortinet-security-labs/edit/main/README_1.md*
-
+*Part of my Fortinet security portfolio — [github.com/your-username](https://github.com/your-username)*
